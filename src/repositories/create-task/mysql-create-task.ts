@@ -5,8 +5,11 @@ import { prisma } from "../../prisma/client";
 export class MysqlCreateTaskRepository implements ICreateTaskRepository {
   public async createTask(params: TaskInputDTO): Promise<TaskOutputDTO> {
     const task = await prisma.task.create({
-      task: params.task,
-      task_priority: params.task_priority,
+      data: {
+        task: params.task,
+        task_priority: Number(params.task_priority),
+        completed: false,
+      },
     });
 
     return task;
