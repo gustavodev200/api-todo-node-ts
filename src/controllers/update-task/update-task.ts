@@ -18,12 +18,13 @@ export class UpdateTaskController implements IController {
       }
 
       if (!id) {
-        return badRequest("Missing user id");
+        return badRequest("Missing task id");
       }
 
       const allowedFielsToUpdate: (keyof UpdateTaskParams)[] = [
         "task",
         "task_priority",
+        "completed",
       ];
 
       const someFieldIsNotAllowedToUpdate = Object.keys(body).some(
