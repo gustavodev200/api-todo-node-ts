@@ -1,6 +1,7 @@
 import express from "express";
 import { config } from "dotenv";
 import taskRoutes from "./routes/taskRoutes";
+import cors from "cors";
 
 const main = async () => {
   config();
@@ -9,6 +10,8 @@ const main = async () => {
   server.use(express.json());
 
   server.use(taskRoutes);
+
+  server.use(cors());
 
   const port = process.env.PORT || 8000;
 
